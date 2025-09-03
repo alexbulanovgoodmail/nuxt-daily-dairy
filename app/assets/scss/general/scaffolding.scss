@@ -1,0 +1,31 @@
+/* scaffolding */
+
+@use '~/assets/scss/general/variables' as *;
+@use '~/assets/scss/abstracts/mixins' as *;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* stylelint-disable */
+html,
+body,
+#__nuxt,
+#__nuxt > div {
+	height: 100%;
+}
+/* stylelint-enable */
+
+.visually-hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	border: 0;
+	margin: -1px;
+	clip-path: rect(0 0 0 0);
+	white-space: nowrap;
+}
