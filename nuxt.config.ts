@@ -3,7 +3,7 @@ import { checker } from 'vite-plugin-checker'
 export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
 	devtools: { enabled: true },
-	modules: ['@nuxt/icon', '@nuxt/eslint'],
+	modules: ['@nuxt/icon', '@nuxt/eslint', '@pinia/nuxt', '@vee-validate/nuxt'],
 	css: ['~/assets/css/main.css', '~/assets/scss/main.scss'],
 	vite: {
 		plugins: [
