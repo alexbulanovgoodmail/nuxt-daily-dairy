@@ -13,6 +13,7 @@ function handleError() {
 		<div class="container">
 			<div class="error__wrapper">
 				<h1 class="error__status-code">{{ error.statusCode }}</h1>
+				<p class="error__status-message">{{ error.statusMessage }}</p>
 
 				<div class="error__back">
 					<UIButton label="Go back home" @click="handleError" />
@@ -36,6 +37,11 @@ function handleError() {
 		text-align: center;
 
 		@include typo-headline;
+	}
+
+	&__status-message {
+		margin: 0 0 48px;
+		text-align: center;
 	}
 
 	&__back {
