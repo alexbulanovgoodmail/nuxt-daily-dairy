@@ -38,6 +38,9 @@ export default defineNuxtConfig({
 		]
 	},
 	runtimeConfig: {
-		public: {}
+		public: {
+			datoCmsUrl: process.env.DATO_CMS_URL,
+			datoCmsReadOnlyPublishToken: process.env.DATO_CMS_READ_ONLY_PUBLISH_TOKEN
+		}
 	}
 })
