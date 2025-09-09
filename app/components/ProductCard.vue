@@ -11,6 +11,7 @@ const { product } = defineProps<Props>()
 <template>
 	<NuxtLink class="product-card" :to="`/product/${product.slug}`">
 		<div class="product-card__img-container">
+			<UILoader class="product-card__loader" />
 			<img
 				class="product-card__img"
 				:src="product.preview.url"
@@ -92,6 +93,14 @@ const { product } = defineProps<Props>()
 		transform: translate(-50%, -50%);
 		filter: drop-shadow(0 4px 4px rgb(0 0 0 / 25%));
 		transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	&__loader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: currentcolor;
 	}
 
 	&__content {

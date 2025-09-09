@@ -24,6 +24,7 @@ const modules = [A11y]
 							data-fancybox="product-gallery"
 							:data-caption="image.alt"
 						>
+							<UILoader class="product-gallery__loader" />
 							<img
 								class="product-gallery__img"
 								:src="image.url"
@@ -82,6 +83,10 @@ const modules = [A11y]
 		}
 	}
 
+	&__img-container a {
+		color: currentcolor;
+	}
+
 	&__img {
 		position: absolute;
 		top: 50%;
@@ -95,6 +100,14 @@ const modules = [A11y]
 		transform: translate(-50%, -50%);
 		filter: drop-shadow(0 4px 4px rgb(0 0 0 / 25%));
 		transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	&__loader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: currentcolor;
 	}
 
 	@media (hover: hover) {
