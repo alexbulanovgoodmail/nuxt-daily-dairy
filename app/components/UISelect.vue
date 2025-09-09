@@ -105,7 +105,7 @@ function handleKeydown(event: KeyboardEvent): void {
 			@click="handleDropdownToggle"
 		>
 			<span class="ui-select__label">{{ selected.label }}</span>
-			<NuxtIcon class="ui-select__arrow-icon" name="arrow-down" filled />
+			<Icon class="ui-select__arrow-icon" name="icons:arrow-down" filled />
 		</button>
 		<div class="ui-select__container">
 			<div class="ui-select__options" role="listbox">
