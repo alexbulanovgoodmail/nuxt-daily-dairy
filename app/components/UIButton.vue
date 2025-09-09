@@ -57,6 +57,13 @@ const {
 			background-color: transparent;
 		}
 	}
+
+	&:disabled,
+	&.disabled {
+		cursor: default;
+		pointer-events: none;
+		opacity: 0.6;
+	}
 }
 
 .theme-primary .ui-button.primary {
