@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { storeLayout } from '~/stores/storeLayout'
 import { storeMenu } from '~/stores/storeMenu'
 
 const MENU_NAME = 'header-menu'
@@ -62,6 +63,8 @@ const handleMenuBody = (event: Event): void => {
 		closeMenu()
 	}
 }
+
+const { navigations } = storeLayout()
 </script>
 
 <template>
@@ -89,19 +92,13 @@ const handleMenuBody = (event: Event): void => {
 						<div class="app-header__menu-content">
 							<nav class="app-header__navigation">
 								<ul class="app-header__navigation-items">
-									<li class="app-header__navigation-item">
-										<NuxtLink class="app-header__link" to="/catalog/">
-											Catalog
-										</NuxtLink>
-									</li>
-									<li class="app-header__navigation-item">
-										<NuxtLink class="app-header__link" to="/about/">
-											About
-										</NuxtLink>
-									</li>
-									<li class="app-header__navigation-item">
-										<NuxtLink class="app-header__link" to="/contacts/">
-											Contact
+									<li
+										v-for="anchor in navigations"
+										:key="anchor.id"
+										class="app-header__navigation-item"
+									>
+										<NuxtLink class="app-header__link" :to="anchor.to">
+											{{ anchor.label }}
 										</NuxtLink>
 									</li>
 								</ul>
