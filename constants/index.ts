@@ -1,5 +1,7 @@
 /* constants */
 
+export const PER_PAGE = 4
+
 export const SORT_OPTIONS = [
 	{
 		label: 'Newest first',
