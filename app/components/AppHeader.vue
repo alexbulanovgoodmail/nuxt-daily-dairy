@@ -142,6 +142,12 @@ const { navigations } = storeLayout()
 		}
 	}
 
+	&__link.router-link-active.router-link-exact-active {
+		cursor: default;
+		pointer-events: none;
+		opacity: 0.6;
+	}
+
 	&__menu-toggle {
 		appearance: none;
 		border: none;
