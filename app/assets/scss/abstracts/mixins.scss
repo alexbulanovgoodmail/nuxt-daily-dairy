@@ -197,11 +197,11 @@
 
 @mixin user-content {
 	p:not(:first-child) {
-		margin-top: 20px;
+		margin-top: 12px;
 	}
 
 	p:not(:last-child) {
-		margin-bottom: 20px;
+		margin-bottom: 12px;
 	}
 }
 /* stylelint-enable */
