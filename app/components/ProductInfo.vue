@@ -1,31 +1,11 @@
 <script setup lang="ts">
-const gallery = [
-	{
-		id: 'ZKicdIV7QFGaPoL3f0exbg',
-		url: 'https://www.datocms-assets.com/166548/1755334238-product-01.png',
-		alt: 'Item: 01'
-	}
-]
+import type { Product } from '~~/types/Product'
 
-const product = {
-	id: 'dRaj1IWwSsmytoMkXKONgw',
-	slug: 'item-01',
-	title: 'Item: 01',
-	rating: 5,
-	caption: 'J.F. Murray Raw Milk, Circa 1940s',
-	description: 'Good, some fading and minor edge wear',
-	gallery: [
-		{
-			id: 'ZKicdIV7QFGaPoL3f0exbg',
-			url: 'https://www.datocms-assets.com/166548/1755334238-product-01.png',
-			alt: 'Item: 01'
-		}
-	],
-	preview: {
-		url: 'https://www.datocms-assets.com/166548/1755334238-product-01.png',
-		alt: 'Item: 01'
-	}
+interface Props {
+	product: Product
 }
+
+defineProps<Props>()
 </script>
 
 <template>
@@ -33,7 +13,7 @@ const product = {
 		<div class="container">
 			<div class="product-info__items">
 				<div class="product-info__item">
-					<ProductGallery :gallery="gallery" />
+					<ProductGallery v-if="product.gallery" :gallery="product.gallery" />
 				</div>
 				<div class="product-info__item">
 					<ProductDetails :product="product" />

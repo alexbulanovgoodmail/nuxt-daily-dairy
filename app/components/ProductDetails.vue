@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Product } from '~~/types/Product'
+import { StructuredText as DatocmsStructuredText } from 'vue-datocms'
 import { useDialog } from '~/composables/useDialog'
+import { useDatoRender } from '~/composables/useDatoRender'
 import ContactForm from '~/components/ContactForm.vue'
 
 interface Props {
@@ -51,6 +53,8 @@ const handleSubmitFailure = (): void => {
 		}
 	})
 }
+
+const { renderBlock } = useDatoRender()
 </script>
 
 <template>
@@ -59,6 +63,11 @@ const handleSubmitFailure = (): void => {
 			<p class="product-details__title">{{ product.title }}</p>
 			<p class="product-details__caption">{{ product.caption }}</p>
 			<p class="product-details__description">{{ product.description }}</p>
+
+			<DatocmsStructuredText
+				:data="product.content"
+				:render-block="renderBlock"
+			/>
 		</div>
 		<div class="product-details__action">
 			<UIButton label="Inquire" @click="handleInquire" />
