@@ -114,7 +114,7 @@ function handleKeydown(event: KeyboardEvent): void {
 					:key="index"
 					ref="optionElementRefs"
 					class="ui-select__option"
-					:value="option.value"
+					:value="String(option.value)"
 					type="button"
 					role="option"
 					:aria-selected="option.value === selected.value ? 'true' : 'false'"
@@ -240,7 +240,15 @@ function handleKeydown(event: KeyboardEvent): void {
 			&:focus-visible {
 				color: var(--color-2);
 				background-color: var(--color-1);
+				cursor: pointer;
 			}
+		}
+
+		&[aria-selected='true'] {
+			color: var(--color-2);
+			background-color: var(--color-1);
+			opacity: 0.6;
+			cursor: default;
 		}
 	}
 

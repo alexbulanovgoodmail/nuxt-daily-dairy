@@ -24,9 +24,11 @@ const selected = computed<Option>({
 	},
 	set(newValue: Option) {
 		const query = { ...route.query }
-		delete query.page
 
-		query.sort = newValue.value
+		if (newValue.value) {
+			delete query.page
+			query.sort = newValue.value
+		} else delete query.sort
 
 		router.push({ query })
 	}
