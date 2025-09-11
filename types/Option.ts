@@ -1,7 +1,7 @@
 import type { ID } from './ID'
 
 export type Option = {
-	value: string
+	value: string | null
 	label: string
 	id?: ID
 }
