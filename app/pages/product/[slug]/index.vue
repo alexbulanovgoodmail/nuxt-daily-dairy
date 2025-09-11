@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { SeoMetaTagType } from 'vue-datocms'
 import type { Product } from '~~/types/Product'
-import { useErrorHandler } from '~/composables/useErrorHandler'
 import { toHead } from 'vue-datocms'
 
 interface PageData {
@@ -19,7 +18,12 @@ const { data, error } = await useFetch<PageData>(
 	}
 )
 
-useErrorHandler(error)
+if (error.value) {
+	showError({
+		statusCode: error.value.statusCode,
+		statusMessage: error.value.message || 'Internal Server Error'
+	})
+}
 
 if (data.value) {
 	const { _seoMetaTags } = data.value.product

@@ -29,7 +29,7 @@ export async function graphqlRequest<T>(
 	})
 
 	if (errors) {
-		throw new Error(JSON.stringify(errors))
+		throw errors
 	}
 
 	return data
