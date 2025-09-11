@@ -3,9 +3,9 @@ import type { Product } from '~~/types/Product'
 import type { Option } from '~~/types/Option'
 
 interface Props {
+	pageTotal: number
 	options?: Option[]
 	products?: Product[]
-	pageTotal: number
 }
 
 const { products = [], options = undefined } = defineProps<Props>()
@@ -15,7 +15,8 @@ const { products = [], options = undefined } = defineProps<Props>()
 	<div class="product-catalog">
 		<CatalogSort v-if="options && options.length > 0" :options="options" />
 		<ProductFeed :products="products" />
-		<UIPagination v-if="pageTotal > 1" :page-total="pageTotal" />
+
+		<UIPagination :page-total="pageTotal" />
 	</div>
 </template>
 

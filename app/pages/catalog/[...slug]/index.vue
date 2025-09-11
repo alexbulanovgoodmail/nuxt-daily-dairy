@@ -2,7 +2,6 @@
 import type { SeoMetaTagType } from 'vue-datocms'
 import type { Product } from '~~/types/Product'
 import { PER_PAGE, SORT_OPTIONS } from '~~/constants'
-import { useErrorHandler } from '~/composables/useErrorHandler'
 import { toHead } from 'vue-datocms'
 
 interface PageData {
@@ -16,30 +15,45 @@ interface PageData {
 }
 
 const route = useRoute()
-const computedQuery = computed(() => ({ ...route.query }))
+const queryRef = computed(() => ({ ...route.query }))
 const limit = route.query.limit ? Number(route.query.limit) : PER_PAGE
-
+const slug = computed<string | null>(() =>
+	route.params.slug ? String(route.params.slug) : null
+)
 const headers = useRequestHeaders()
-const { data, error, execute, status } = useFetch<PageData>(
-	() => `/api/catalog/${route.params.slug}/`,
+const { data, error, execute } = useFetch<PageData>(
+	() => (slug.value ? `/api/catalog/${route.params.slug}/` : `/api/catalog/`),
 	{
 		headers,
-		query: computedQuery,
+		query: queryRef,
 		server: false, // только клиент
 		immediate: false, // вручную
 		lazy: true
 	}
 )
 
-useErrorHandler(error)
-
-const loading = computed<boolean>(() => status.value === 'pending')
-const products = computed<Product[]>(() => data.value?.allProducts || [])
+const products = ref<Product[]>([])
 const count = computed<number>(() => data.value?._allProductsMeta.count || 0)
 const pageTotal = computed<number>(() => Math.ceil(count.value / limit))
 
-watch(computedQuery, () => {
-	window.scrollTo({ top: 0, behavior: 'smooth' })
+watch(data, () => {
+	if (data.value) {
+		products.value = data.value.allProducts
+
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		})
+	}
+})
+
+watch(error, () => {
+	if (error.value) {
+		showError({
+			statusCode: error.value.statusCode,
+			statusMessage: error.value.message || 'Internal Server Error'
+		})
+	}
 })
 
 onMounted(async () => {
@@ -58,7 +72,7 @@ onMounted(async () => {
 
 <template>
 	<main>
-		<template v-if="!data && loading">
+		<template v-if="!data">
 			<UILoader :size="96" :style="{ margin: '56px 0' }" />
 		</template>
 		<template v-else>
