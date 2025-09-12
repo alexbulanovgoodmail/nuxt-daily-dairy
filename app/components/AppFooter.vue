@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { storeLayout } from '~/stores/storeLayout'
+
+const { socials } = storeLayout()
 const year = computed(() => `${new Date().getFullYear()}`)
 </script>
 
@@ -11,17 +14,14 @@ const year = computed(() => `${new Date().getFullYear()}`)
 				</div>
 				<div class="footer__social social">
 					<ul class="social__items">
-						<li class="social__item">
-							<a class="social__link" href="#">insta</a>
-						</li>
-						<li class="social__item">
-							<a class="social__link" href="#">ebay</a>
-						</li>
-						<li class="social__item">
-							<a class="social__link" href="#">facebook</a>
-						</li>
-						<li class="social__item">
-							<a class="social__link" href="#">email</a>
+						<li v-for="social in socials" :key="social.id" class="social__item">
+							<a
+								class="social__link"
+								:href="social.to"
+								target="_blank"
+								rel="noopener noreferrer"
+								>{{ social.label }}</a
+							>
 						</li>
 					</ul>
 				</div>

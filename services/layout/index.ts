@@ -13,10 +13,15 @@ export async function getLayout(event?: H3Event) {
       }
       layout {
         navigations {
+          id
           label
           to
-          id
         }
+				socials {
+					id
+					label
+					to
+				}
       }
     }
   `
