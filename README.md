@@ -1,5 +1,7 @@
 ![Превью сайта](https://github.com/alexbulanovgoodmail/nuxt-daily-dairy/blob/main/preview.jpg?raw=true)
 
+[Посмотреть сайт вживую](https://nuxt-daily-dairy.netlify.app)
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
